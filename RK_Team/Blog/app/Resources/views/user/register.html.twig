@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'register' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+
+    <div class="main">
+        <div class="one">
+            <form class="register" action="{{ path('user_register') }}" method="post">
+                    <h3>Регистрация</h3>
+                    <div>
+                        <label class="col-sm-4 control-label" for="user_email">E-mail</label>
+                        <input class="form-control" id="user_email" placeholder="E-mail" name="user[email]" required type="email">
+                    </div>
+                    <div>
+                        <label class="col-sm-4 control-label" for="user_fullName">Потребителско Име</label>
+                        <input type="text" class="form-control" id="user_fullName" placeholder="Nick Name" name="user[fullName]" required>
+                    </div>
+                    <div>
+                        <label class="col-sm-4 control-label" for="user_password_first">Парола</label>
+                        <input type="password" class="form-control" id="user_password_first" placeholder="Password" name="user[password][first]" required>
+                    </div>
+                    <div>
+                        <label class="col-sm-4 control-label" for="user_password_second">Потвърди Парола</label>
+                        <input type="password" class="form-control" id="user_password_second" placeholder="Password" name="user[password][second]" required>
+                    </div>
+                    <div>
+                        <label></label>
+                        <button type="submit" class="button" style="margin: 0% 2% 0% 0%;">Създай Профил</button>
+                        <a class="button" href="{{ path('blog_index') }}">Отказ</a>
+                    </div>
+
+                    {{  form_row(form._token) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

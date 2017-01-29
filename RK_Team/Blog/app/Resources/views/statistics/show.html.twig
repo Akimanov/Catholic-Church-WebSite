@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/statistics.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
+    <div class="mainDiv">
+        <header>
+            <h3>Статистика</h3>
+        </header>
+        <div class="content">
+                <div class="white-div">
+                    <textarea class="form-control" rows="25">{{ statistics.content }}</textarea>
+                 </div>
+
+                <div class="white-div-right">
+                     <a href="{{ asset('images/bulka.jpg') }}" data-lightbox="gallery">
+                     <img style="display: block;width: 100%;height: auto;"
+                         src="{{ asset('images/bulka.jpg') }}"/>
+                     </a>
+                </div>
+
+                <div class="white-div-right">
+                    <a href="{{ asset('images/bebe.jpg') }}" data-lightbox="gallery">
+                    <img style="display: block;width: 100%;height: auto;"
+                    src="{{ asset('images/bebe.jpg') }}"/>
+                    </a>
+                </div>
+        </div>
+
+            <label></label>
+            {% if app.getUser() and app.getUser().isAdmin()  %}
+                <a class="button" style="padding: 15px" href="{{ path('statistics_edit', {'id': 1}) }}">Редактирай</a>
+            {% endif %}
+                <a class="button" style="padding: 15px" href="{{ path('blog_index') }}">Назад &raquo;</a>
+    </div>
+{% endblock %}

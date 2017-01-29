@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/articleView.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
+            <div class="mainDiv">
+                    <header>
+                        <h2>{{ article.title }}</h2>
+                    </header>
+
+
+                    <div class="white-div">
+                        <div class="photo-container">
+                           <div class="photoDiv">
+                            <a href="{{ asset('uploads/articles/' ~ article.coverPhoto ) }}" data-lightbox="gallery">
+                                <img style="display: block;width: 100%;height: auto;"
+                                     src="{{ asset('uploads/articles/' ~ article.coverPhoto ) }}"/>
+                            </a>
+                           </div>
+                        </div>
+                        <textarea class="form-control" rows="12">{{ article.content }}</textarea>
+                        <h1 style="font-family: 'Calibri Light';font-style: italic;
+                         font-size: smaller">Този пост бе написан от {{ article.author }}</h1>
+                    </div>
+                            <label></label>
+                            {% if app.getUser() and (app.getUser().isAuthor(article) or app.getUser().isAdmin())  %}
+                                <a class="button" style="padding: 15px" href="{{ path('article_delete', {'id': article.id}) }}">Изтрий</a>
+                                <a class="button" style="padding: 15px" href="{{ path('article_edit', {'id': article.id}) }}">Редактирай</a>
+                            {% endif %}
+                                <a class="button" style="padding: 15px" href="{{ path('blog_index') }}">Назад &raquo;</a>
+            </div>
+
+
+    <div class="mainDiv">
+        <header><h3>Коментари</h3></header>
+       <a href="{{ path('comment_create', {'id':article.id}) }}" class="button">Напиши коментар</a>
+        <br>
+        <br>
+        {% for comment in comments %}
+
+            <div class="white-div" style="margin-top: 5%; margin-bottom: -20px">
+
+            <p style="width: 100%">
+                {{ comment.content() }}
+            </p>
+
+                <footer>
+                    <p class="post-info">Написано от {{ comment.author }} на {{ comment.dateAdded|date('d-m-Y H:i') }} </p>
+                </footer>
+            </div>
+            {% if app.getUser() and app.getUser().isAdmin() %}
+            <a class="button" style="padding: 5px" href="{{ path('comment_delete', {'id':comment.id}) }}">Изтрий</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

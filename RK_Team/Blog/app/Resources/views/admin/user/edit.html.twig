@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/articleCreate.css') }}">
+    <div class="main">
+        <div class="one">
+
+            <form class="register" action="{{ path('admin_user_edit', {id: user.id}) }}" method="post">
+                <h3>Редактирай потребител</h3>
+
+                <p style="margin-left: 1%" for="user_1email">Емаил Адрес:</p>
+                <input value="{{ user.email }}" type="email" style="margin-bottom: 4%" class="form-control"  id="user_1email"
+                       name="user_edit[email]" required>
+
+                <p style="margin-left: 1%" for="user_fullName">Потребителско име:</p>
+                <input value="{{ user.fullName }}" type="text" style="margin-bottom: 4%" class="form-control"  id="user_fullName"
+                       name="user_edit[fullName]" required>
+
+                <p style="margin-left: 1%" for="user_password_first">Потребителска Парола:</p>
+                <input type="password" style="margin-bottom: 4%" class="form-control"  id="user_password_first"
+                       name="user_edit[password][first]">
+
+                <p style="margin-left: 1%" for="user_password_second">Потвърди Парола:</p>
+                <input type="password" style="margin-bottom: 40px" class="form-control"  id="user_password_second"
+                       name="user_edit[password][second]">
+
+                <div class="form-group" style="margin-right: 85%">
+                    {{ form_widget(form.roles )}}
+                </div>
+                <div>
+                    <div>
+                        <label></label>
+                        <a class="button" style="padding: 15px" href="{{ path('admin_users_all') }}">Отказ</a>
+                        <button type="submit" style="padding: 15px" class="button">Готово</button>
+                    </div>
+                </div>
+                {{  form_row(form._token) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

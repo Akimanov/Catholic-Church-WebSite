@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
+    <div class="mainDiv">
+        <form action="{{ path('contacts_edit', {id: 1}) }}" method="POST">
+            <header>
+                <h3>Редактиране на Контакти</h3>
+            </header>
+            <div class="content">
+                <div class="conteiner">
+                    <div class="white-div">
+                        <p class="col-sm-4 control-label" for="contacts_content">Задаване на нов адрес:</p>
+                        <textarea class="form-control" rows="12" id="contacts_content"
+                                  name="contacts[content]">{{ contacts.content }}</textarea>
+                    </div>
+                    <div class="white-div-right">
+                        <a href="{{ asset('images/cyrkvaContacts.jpg') }}" data-lightbox="gallery">
+                            <img style="display: block;width: 100%;height: auto;"
+                                 src="{{ asset('images/cyrkvaContacts.jpg') }}"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{ form_row(form._token) }}
+            {% if app.getUser().isAdmin()  %}
+                <label></label>
+                <button type="submit" style="padding: 15px" class="button">Готово</button>
+                <a class="button" style="padding: 15px" href="{{ path('contacts_view', {id: 1}) }}">Отказ</a>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/articleCreate.css') }}">
+    <div class="main">
+        <div class="one">
+            <form class="register" action="{{ path('message_delete', {id: message.id}) }}" method="POST">
+                <h3>Изтрии Съобщение:</h3>
+
+                <p style="margin-left: 1%" for="message_email">Емаил Адрес на автора:</p>
+                <input type="text" style="margin-bottom: 4%" class="form-control"  id="message_email"
+                       name="message[email]" value="{{ message.email }}" disabled>
+
+                <p style="margin-left: 1%" for="message_name">Име на автора:</p>
+                <input type="text" style="margin-bottom: 4%" class="form-control"  id="message_name"
+                       name="message[name]" value="{{ message.name }}" disabled>
+
+                <p style="margin-left: 1%" for="message_content">Съдържание:</p>
+                <textarea style="margin-bottom: 40px" class="form-control" rows="6" id="message_content"
+                          name="message[content]" disabled>{{ message.content}}</textarea>
+
+                {{ form_row(form._token) }}
+
+                <div>
+                    <div>
+                        <label></label>
+                        <a class="button" style="padding: 15px" href="{{ path('user_profile') }}">Отказ</a>
+                        <button type="submit" style="padding: 15px" class="button">Изтрии!!!</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

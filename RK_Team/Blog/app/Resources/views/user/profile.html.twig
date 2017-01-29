@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'profile' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <div class="mainDiv" style="height: auto">
+        <header><h3>Потребителски емаил: {{ user.email }}</h3></header>
+        <header><h3>Потребителско име: {{ user.fullName }}</h3></header>
+        <div class="conteiner">
+            <div class="white-div-right">
+                {% if app.getUser() and app.getUser().isAdmin()  %}
+
+                    <a class="button" href="{{ path('article_create') }}">Добави Статия</a>
+                    <a class="button" href="{{ path('messages_index') }}">Четене на поща</a>
+                    <a class="button" href="{{ path('admin_users_all') }}">Потребители</a>
+                    <a class="button" href="{{ path('contacts_edit',{'id': 1}) }}">Редакция Контакти</a>
+                    <a class="button" href="{{ path('statistics_edit',{'id': 1}) }}">Редакция Статистика</a>
+                    <a class="button" href="{{ path('about_edit',{'id': 1}) }}">Редакция За Нас</a>
+            </div>
+                {% endif %}
+        </div>
+    </div>
+{% endblock %}

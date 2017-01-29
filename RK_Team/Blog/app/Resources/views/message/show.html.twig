@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/articleView.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
+    <div class="mainDiv">
+        <h3>Съобщения</h3>
+
+
+        {% for message in messages %}
+            <div class="white-div" style="margin-top: 5%; margin-bottom: -20px">
+
+                <p style="width: 100%">
+                    {{ message.content() }}
+                </p>
+
+                <footer>
+                    <p style="width: 100%" class="post-info">Написано от "{{ message.name }}" с Емаил "{{ message.email }}" на "{{ message.dateAdded|date('d-m-Y H:i') }}" </p>
+                </footer>
+            </div>
+            {% if app.getUser() and app.getUser().isAdmin() %}
+                <a class="button" style="padding: 5px"  href="{{ path('message_delete', {'id':message.id}) }}">Изтрии</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

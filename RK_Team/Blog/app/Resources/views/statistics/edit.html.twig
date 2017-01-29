@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/statistics.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
+    <div class="mainDiv">
+        <form action="{{ path('statistics_edit', {id: 1}) }}" method="POST">
+            <header>
+                <h3>Редактиране на Статистика</h3>
+            </header>
+            <div class="content">
+                <div class="white-div">
+                    <textarea class="form-control" rows="25" id="statistics_content"
+                    name="statistics[content]">{{ statistics.content }}</textarea>
+                </div>
+
+                <div class="white-div-right">
+                    <a href="{{ asset('images/bulka.jpg') }}" data-lightbox="gallery">
+                        <img style="display: block;width: 100%;height: auto;"
+                             src="{{ asset('images/bulka.jpg') }}"/>
+                    </a>
+                </div>
+
+                <div class="white-div-right">
+                    <a href="{{ asset('images/bebe.jpg') }}" data-lightbox="gallery">
+                        <img style="display: block;width: 100%;height: auto;"
+                             src="{{ asset('images/bebe.jpg') }}"/>
+                    </a>
+                </div>
+            </div>
+
+                {{ form_row(form._token) }}
+                {% if app.getUser().isAdmin()  %}
+                <label></label>
+                <button type="submit" class="button">Готово</button>
+                <a class="button" href="{{ path('statistics_view', {id: 1}) }}">Отказ</a>
+                {% endif %}
+        </form>
+    </div>
+{% endblock %}
+
+
+

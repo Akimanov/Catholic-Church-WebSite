@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/articleCreate.css') }}">
+    <div class="main">
+        <div class="one">
+            <form class="register" action="{{ path('message_create') }}" method="POST">
+                <h3>Напиши Съобщение:</h3>
+
+                <p style="margin-left: 1%" for="message_email">Емаил Адрес:</p>
+                <input type="email" style="margin-bottom: 4%" class="form-control"  id="message_email"
+                          name="message[email]" required>
+
+                <p style="margin-left: 1%" for="message_name">Твоето име:</p>
+                <input type="text" style="margin-bottom: 4%" class="form-control" rows="1" id="message_name"
+                          name="message[name]" required>
+
+                <p style="margin-left: 1%" for="message_content">Съдържание:</p>
+                <textarea style="margin-bottom: 40px" class="form-control" rows="6" id="message_content"
+                          name="message[content]" required></textarea>
+
+
+                {{ form_row(form._token) }}
+
+                <div>
+                    <div>
+                        <label></label>
+                        <a class="button" style="padding: 15px" href="{{ path('contacts_view',{id:1}) }}">Отказ</a>
+                        <button type="submit" style="padding: 15px" class="button">Готово</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

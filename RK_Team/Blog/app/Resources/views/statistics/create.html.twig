@@ -1,0 +1,31 @@
+
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/statistics.css') }}">
+
+    <div class="main">
+        <div class="one">
+            <form enctype="multipart/form-data" class="register" action="{{ path('statistics_create') }}" method="POST">
+                <h3>Качване на нова Статистика</h3>
+
+                <div>
+                    <label class="col-sm-4 control-label" for="statistics_content">Съдържание</label>
+                    <div class="col-sm-6">
+                            <textarea class="form-control" rows="17" id="statistics_content"
+                                      name="statistics[content]"></textarea>
+                    </div>
+                </div>
+                {{ form_row(form._token) }}
+
+                <div>
+                    <div>
+                        <label></label>
+                        <button style="float: right;" type="submit" class="button">Изпрати</button>
+                        <a style="float: right; padding: 14px; margin: -4% 3% 5% 0%; background-color: tomato;" class="button" href="{{ path('blog_index') }}">Отказ</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

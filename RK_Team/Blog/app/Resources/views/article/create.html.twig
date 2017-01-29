@@ -1,0 +1,42 @@
+
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/articleCreate.css') }}">
+
+    <div class="main">
+        <div class="one">
+            <form enctype="multipart/form-data" class="register" action="{{ path('article_create') }}" method="POST">
+                <h3>Нова Статия</h3>
+
+                <div class="form-group">
+                    <p style="margin-left: 1%" class="col-sm-4 control-label" for="article_title">Заглавие</p>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="article_title" placeholder="Post Title"
+                               name="article[title]">
+                    </div>
+                </div>
+
+                <div>
+                    <p style="margin-left: 1%" class="col-sm-4 control-label" for="article_content">Съдържание</p>
+                    <div class="col-sm-6">
+                            <textarea class="form-control" rows="17" id="article_content"
+                                      name="article[content]"></textarea>
+                    </div>
+                </div>
+
+                {{ form_row(form.coverPhoto) }}
+                {{ form_row(form._token) }}
+
+
+                <div>
+                    <div>
+                        <label></label>
+                        <button style="padding: 15px" type="submit" class="button">Изпрати</button>
+                        <a style="padding: 15px" class="button" href="{{ path('blog_index') }}">Отказ</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

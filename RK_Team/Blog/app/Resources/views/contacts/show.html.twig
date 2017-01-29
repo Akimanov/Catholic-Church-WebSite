@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
+
+    <div class="mainDiv">
+        <header>
+            <h3>Свържи се с нас!!</h3>
+        </header>
+        <div class="content">
+            <div class="conteiner">
+                <div class="white-div">
+                    <textarea class="form-control" rows="12">{{ contacts.content }}</textarea>
+                </div>
+                <div class="white-div-right">
+                    <a href="{{ asset('images/cyrkvaContacts.jpg') }}" data-lightbox="gallery">
+                        <img style="display: block;width: 100%;height: auto;"
+                             src="{{ asset('images/cyrkvaContacts.jpg') }}"/>
+                    </a>
+                </div>
+            </div>
+            <div class="conteiner">
+                <div class="white-div">
+                    <p style="width: 100%">За всички ваши въпроси,съвети, коментари към нас, от тук може да ни пишете.
+                        Ще ви бъде одговорено на вашия емаил, възможно най скоро!!</p>
+                    <a class="button" style="margin-left: 60%; margin-bottom: 5%" href="{{ path('message_create') }}">Пиши ни!</a>
+                </div>
+            </div>
+        </div>
+
+        <label></label>
+        {% if app.getUser() and app.getUser().isAdmin()  %}
+            <a class="button" style="padding: 15px" href="{{ path('contacts_edit', {'id': 1}) }}">Редактирай</a>
+        {% endif %}
+        <a class="button" style="padding: 15px" href="{{ path('blog_index') }}">Назад &raquo;</a>
+    </div>
+{% endblock %}

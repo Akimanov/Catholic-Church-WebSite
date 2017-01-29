@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/articleCreate.css') }}">
+    <div class="main">
+        <div class="one">
+            <form class="register" action="{{ path('admin_user_delete', {id: user.id}) }}" method="post">
+                <h3>Изтрий потребител!!!</h3>
+
+                <p style="margin-left: 1%" for="user_1email">Емаил Адрес:</p>
+                <input disabled="disabled" value="{{ user.email }}" type="email" style="margin-bottom: 4%" class="form-control"  id="user_1email"
+                       name="user[email]" required>
+
+                <p style="margin-left: 1%" for="user_fullName">Потребителско име:</p>
+                <input disabled="disabled" value="{{ user.fullName }}" type="text" style="margin-bottom: 4%" class="form-control"  id="user_fullName"
+                       name="user[fullName]" required>
+
+                <p style="margin-left: 1%" for="user_password_first">Потребителска Парола:</p>
+                <input disabled="disabled" type="password" style="margin-bottom: 4%" class="form-control"  id="user_password_first"
+                       name="user[password][first]">
+
+                <p style="margin-left: 1%" for="user_password_second">Потвърди Парола:</p>
+                <input disabled="disabled" type="password" style="margin-bottom: 40px" class="form-control"  id="user_password_second"
+                       name="user[password][second]">
+
+
+                <div>
+                    <div>
+                        <label></label>
+                        <a class="button" style="padding: 15px" href="{{ path('admin_users_all') }}">Отказ</a>
+                        <button type="submit" style="padding: 15px" class="button">Изтрий!!</button>
+                    </div>
+                </div>
+                {{  form_row(form._token) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/articleView.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
+
+    <form action="{{ path('article_delete', {id: article.id}) }}" method="POST">
+        <div class="mainDiv">
+            <header>
+                <h2>Изтрии Статия</h2>
+            </header>
+
+            <div class="white-div">
+                <div class="photo-container">
+                    <div class="photoDiv">
+                        <a href="{{ asset('uploads/articles/' ~ article.coverPhoto ) }}" data-lightbox="gallery">
+                            <img style="display: block;width: 100%;height: auto;"
+                                 src="{{ asset('uploads/articles/' ~ article.coverPhoto ) }}"/>
+                        </a>
+                    </div>
+                </div>
+                <p for="article_title">Заглавие</p>
+                <input type="text" class="form-control" id="article_title" placeholder="Post Title"
+                       name="article[title]" value="{{ article.title }}" disabled>
+
+                <p for="article_content">Content</p>
+                <textarea class="form-control" rows="16" id="article_content"
+                          name="article[content]" disabled>{{ article.content }}</textarea>
+
+                {{ form_row(form._token) }}
+            </div>
+            <label></label>
+            <a class="button" href="{{ path('article_view', {id: article.id}) }}">Отказ</a>
+            <button type="submit" class="button">Изтрий!!</button>
+        </div>
+    </form>
+{% endblock %}
+

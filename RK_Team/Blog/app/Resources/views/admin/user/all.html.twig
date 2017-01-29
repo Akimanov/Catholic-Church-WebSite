@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/statistics.css') }}">
+
+    <div class="mainDiv" style="height: auto">
+        <header>
+            <h3>Потребителски лист</h3>
+        </header>
+            <div class="tableConteiner" style="width: 90%; overflow-x:auto">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Eмaил</th>
+                        <th>Потребителско име</th>
+                        <th>Редактирай</th>
+                        <th>Изтрий</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.fullName }}</td>
+                            <td><a href="{{ path("admin_user_edit", {id: user.id}) }}" class="button" style="padding: 15px">Редактирай</a></td>
+                            <td><a href="{{ path("admin_user_delete", {id: user.id}) }}" class="button" style="padding: 15px">Изтрий</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </div>
+{% endblock %}

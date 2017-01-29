@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
+
+    <div class="mainDiv">
+        <header>
+            <h3>За нас</h3>
+        </header>
+        <div class="content">
+            <div class="conteiner">
+                <div class="white-div">
+                    <p class="col-sm-4 control-label" for="about_biography1">Отец Румен Станев:</p>
+                    <textarea class="form-control" rows="15">{{ about.biography1 }}</textarea>
+                </div>
+                   <div class="white-div-right">
+                       <a href="{{ asset('images/OtecRumen.jpg') }}" data-lightbox="gallery">
+                       <img style="display: block;width: 100%;height: auto;"
+                       src="{{ asset('images/OtecRumen.jpg') }}"/>
+                       </a>
+                   </div>
+            </div>
+            <div class="conteiner">
+                <div class="white-div">
+                    <p class="col-sm-4 control-label" for="about_biography2">Отец Борис Стойков:</p>
+                    <textarea class="form-control" rows="14">{{ about.biography2 }}</textarea>
+                </div>
+                   <div class="white-div-right">
+                        <a href="{{ asset('images/OtecBoris.jpg') }}" data-lightbox="gallery">
+                        <img style="display: block;width: 100%;height: 100%;"
+                        src="{{ asset('images/OtecBoris.jpg') }}"/>
+                        </a>
+                   </div>
+            </div>
+            <div class="conteiner">
+                <div class="white-div">
+                    <p class="col-sm-4 control-label" for="about_content">Изтория на църквата:</p>
+                    <textarea class="form-control" rows="30">{{ about.content }}</textarea>
+                </div>
+                    <div class="white-div-right">
+                        <a href="{{ asset('images/cyrkvaAbout.jpg') }}" data-lightbox="gallery">
+                        <img style="display: block;width: 100%;height: auto;"
+                        src="{{ asset('images/cyrkvaAbout.jpg') }}"/>
+                        </a>
+                    </div>
+            </div>
+        </div>
+
+        <label></label>
+        {% if app.getUser() and app.getUser().isAdmin()  %}
+            <a class="button" style="padding: 15px" href="{{ path('about_edit', {'id': 1}) }}">Редактирай</a>
+        {% endif %}
+        <a class="button" style="padding: 15px" href="{{ path('blog_index') }}">Назад &raquo;</a>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+
+    <div class="mainDiv">
+        <form action="{{ path('about_edit', {id: 1}) }}" method="POST">
+            <header>
+                <h3>Редактиране на За Нас</h3>
+            </header>
+            <div class="content">
+                <div class="conteiner">
+                    <div class="white-div">
+                        <p class="col-sm-4 control-label" for="about_biography1">Биография на първия отец:</p>
+                        <textarea class="form-control" rows="15" id="about_biography1"
+                                  name="about[biography1]">{{ about.biography1 }}</textarea>
+                    </div>
+                    <div class="white-div-right">
+                        <a href="{{ asset('images/OtecRumen.jpg') }}" data-lightbox="gallery">
+                            <img style="display: block;width: 100%;height: auto;"
+                                 src="{{ asset('images/OtecRumen.jpg') }}"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="conteiner">
+                    <div class="white-div">
+                        <p class="col-sm-4 control-label" for="about_biography2">Биография на втория отец:</p>
+                        <textarea class="form-control" rows="14" id="about_biography2"
+                                  name="about[biography2]">{{ about.biography2 }}</textarea>
+                    </div>
+                    <div class="white-div-right">
+                        <a href="{{ asset('images/OtecBoris.jpg') }}" data-lightbox="gallery">
+                            <img style="display: block;width: 100%;height: auto;"
+                                 src="{{ asset('images/OtecBoris.jpg') }}"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="conteiner">
+                    <div class="white-div">
+                        <p class="col-sm-4 control-label" for="about_content">Изтория на църквата:</p>
+                        <textarea class="form-control" rows="30" id="about_content"
+                                  name="about[content]">{{ about.content }}</textarea>
+                    </div>
+                    <div class="white-div-right">
+                        <a href="{{ asset('images/cyrkvaAbout.jpg') }}" data-lightbox="gallery">
+                            <img style="display: block;width: 100%;height: auto;"
+                                 src="{{ asset('images/cyrkvaAbout.jpg') }}"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            {{ form_row(form._token) }}
+            {% if app.getUser().isAdmin()  %}
+                <label></label>
+                <button type="submit" class="button">Готово</button>
+                <a class="button" href="{{ path('about_view', {id: 1}) }}">Отказ</a>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

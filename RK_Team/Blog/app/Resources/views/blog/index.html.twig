@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
+    <form class="register">
+
+    <div class="mainContent">
+
+        <div class="content">
+            {% for article in articles %}
+            <article class="topcontent">
+                <header>
+                    <h2><a href="{{ path('article_view', {'id': article.id}) }}" title="First post">{{ article.title }}</a></h2>
+                </header>
+
+                <footer>
+                    <p class="post-info">Този пост бе написан от {{ article.author }} на "{{ article.dateAdded|date('d-m-Y H:i') }}"</p>
+                </footer>
+                <content>
+                    <a href="{{ asset('uploads/articles/' ~ article.coverPhoto ) }}" data-lightbox="gallery">
+                        <img style="display: block;width: 100%;height: auto;"
+                             src="{{ asset('uploads/articles/' ~ article.coverPhoto ) }}"/></a>
+
+                    <p>{{ article.summary }}</p>
+                    {# може да се напише и {{ article.content }} за да покаже целия пост #}
+                </content>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <aside class="top-sidebar">
+        <article>
+            <h2>Top sidebar</h2>
+            <p>Класическото тесто за пица се приготвя от брашно, мая, захар, сол, </p>
+        </article>
+    </aside>
+
+    <aside class="middle-sidebar">
+        <article>
+            <h2>Middle sidebar</h2>
+            <p>Класическото тесто за пица се приготвя от брашно, мая, захар, сол, </p>
+        </article>
+    </aside>
+
+    <aside class="bottom-sidebar">
+        <article>
+            <h2>Bottom sidebar</h2>
+            <p>Класическото тесто за пица се приготвя от брашно, мая, захар, сол, </p>
+        </article>
+    </aside>
+{% endblock %}
+
